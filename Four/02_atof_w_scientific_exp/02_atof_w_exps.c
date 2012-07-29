@@ -1,4 +1,3 @@
-//#include <ctype.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -43,11 +42,9 @@ double atof(char s[])
   
   if ((e_index = strindex(s, "e")) != -1 || (e_index = strindex(s, "E")) != -1) {
     int exp_sign;
-    printf("e_index is %d\n", e_index);
     /* Convert to e-less notation. */
     exponent = getexponent(s, e_index);
     s[e_index] = '\0';
-    printf("exponent is %d\n", exponent);
     exponent_val = 1.0;
     if ( exponent < 0 ) {
       exponent = -1 * exponent;
@@ -55,32 +52,21 @@ double atof(char s[])
     } else {exp_sign = '+';}
     for (;exponent > 0; exponent--) {
       exponent_val *= 10.0;
-      printf("exponent is %d\n", exponent);
-      printf("exponent_val is %g\n", exponent_val);
     }
     if (exp_sign == '-') {exponent_val = 1/exponent_val;}
 
   } else {exponent_val = 1.0;}
-  printf("s is: %s\n", s);
   for (i = 0 ; isspace(s[i]) ; i++) /* skip space char(s) */
     ;
   sign = (s[i] == '-') ? -1 : 1 ; 
   if (s[i] == '+' || s[i] == '-') i++;
   for (val = 0.0 ; isdigit(s[i]) ; i++)
     val = 10.0 * val + (s[i] - '0');
-  printf("val is %g and s is %s and i is %d.\n", val, s, i);
-  printf("s is %s  .\n", s);
-  if (s[i] == '.') {
-    printf("s is %s and i is %d, but s[i] = '.'!\n",s,i);
-    i++;
-  }
+  if (s[i] == '.') {i++;}
   for (power = 1.0 ; isdigit(s[i]) ; i++) {
-    printf("val is %g and s is %s and i is %d.\n", val, s, i);
-    printf("does this execute?!?! s[i] - '0' is %d.\n", s[i]-'0');
     val = 10.0 * val + (s[i] - '0');
     power *= 10.0;
   }
-  printf("sign is %d exponent_val is %g val is %g power is %g.\n", sign, exponent_val, val, power);
   return  sign * exponent_val * val / power;
 }
 
@@ -102,9 +88,7 @@ int strindex(char s[], char t[])
 int getexponent(char s[], int e_index)
 {
   int shiftind, lengthofshiftnum, exponent, i;
-  printf("s before trimtrail is %s\n", s);
   trimtrail(s);
-  printf("strlen(s) is: %d\n", strlen(s));
   shiftind = e_index + 1;  
   lengthofshiftnum = strlen(s) - shiftind;
   char result[lengthofshiftnum];
@@ -112,10 +96,7 @@ int getexponent(char s[], int e_index)
     result[i] = s[shiftind];
   }
   result[i] = '\0';
-  printf("i is %d.\n", i);
-  printf("result is %s\n", result);
   exponent = atoi(result);
-  printf("exponent is: %d\n", exponent);
   return exponent;
 }
 
