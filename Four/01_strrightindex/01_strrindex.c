@@ -2,13 +2,13 @@
 #include <string.h>
 #define MAXLINE 1000 /* maximum input line length */
 int zagetline(char s[], int lim);
-
+void repcarreturns(char crstring[]);
 // FOOOOOOOOOOOL
-int strindex(char source[], char searchfor[]);
+int strindex(char source[], char target[]);
 void reverse(char s[]);
-int strrindex(char source[], char searchfor[]);
+int strrindex(char source[], char target[]);
 
-char pattern[] = "123"; /* pattern to search for */
+char pattern[] = "1"; /* pattern to search for */
 
 /* find all lines matching pattern */
 main()
@@ -47,19 +47,31 @@ int zagetline(char s[], int lim)
   return i;
   }
 
-/* strindex: return index of t in s, -1 if none */
-int strindex(char s[], char t[])
+/* represent carriage returns */
+void repcarreturns(char crstring[])
+{
+  char crstringrepr[strlen(crstring)];
+  int q;
+  for ( q = 1; q < strlen(crstring); q++) {
+    crstringrepr[q-1] = crstring[q];
+  }
+  crstringrepr[q-1] = '\0';
+  printf("Here's a representation of the source string that strindex got: '\\n'%s\n", crstringrepr);      
+  return;
+}
+
+/* strindex: return index of target in source, -1 if none */
+int strindex(char source[], char target[])
 {
   int i, j, k;
-
-  printf("Here's the value of \"s\" that strindex got: %s\n", s);
-  printf("Here's the value of \"t\" that strindex got: %s\n", t);
-  for (i = 0; s[i] != '\0'; i++) {
-    for (j=i, k=0; t[k]!='\0' && s[j]==t[k]; j++, k++)
+  if (source[0] == '\n') {repcarreturns(source);}
+  printf("Here's the value of the target string that strindex got: %s\n", target);
+  for (i = 0; source[i] != '\0'; i++) {
+    for (j=i, k=0; target[k]!='\0' && source[j]==target[k]; j++, k++)
       ;
-    if (k > 0 && t[k] == '\0') {
-      printf("We have a match! \"k\" is: %d\n", k);
-      printf("We have a match! \"i\" is: %d\n", i);
+    if (k > 0 && target[k] == '\0') {
+      printf("We have a match! The length of the target is: %d\n", k);
+      printf("We have a match! The start index of the target is: %d\n", i);
       return i;
     }
   }
@@ -78,16 +90,16 @@ void reverse(char s[])
   }
 }
 
-/* find the rightmost index in source matching searchfor */
-int strrindex(char source[], char searchfor[])
+/* find the rightmost index in source matching target */
+int strrindex(char source[], char target[])
 {
-  int fromright, leftindex, lensource, lensearchfor;
+  int fromright, leftindex, lensource, lentarget;
   lensource = strlen(source);
-  lensearchfor = strlen(searchfor);
+  lentarget = strlen(target);
   reverse(source);
-  reverse(searchfor);
-  fromright = strindex(source, searchfor);
+  reverse(target);
+  fromright = strindex(source, target);
   if (fromright == -1) {return -1;}
-  leftindex = lensource - (fromright + lensearchfor) - 1;
+  leftindex = lensource - (fromright + lentarget);
   return leftindex;
 }
