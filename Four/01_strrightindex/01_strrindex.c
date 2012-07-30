@@ -8,7 +8,7 @@ int strindex(char source[], char target[]);
 void reverse(char s[]);
 int strrindex(char source[], char target[]);
 
-char pattern[] = "1"; /* pattern to search for */
+char pattern[] = "123"; /* pattern to search for */
 
 /* find all lines matching pattern */
 main()
@@ -45,7 +45,7 @@ int zagetline(char s[], int lim)
     s[i++] = c;
   s[i] = '\0';
   return i;
-  }
+}
 
 /* represent carriage returns */
 void repcarreturns(char crstring[])
