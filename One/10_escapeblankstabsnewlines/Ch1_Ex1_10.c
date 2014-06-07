@@ -1,11 +1,11 @@
 #include <stdio.h>
 
 /* count blanks, tabs, ad newlines*/
- 
+
 main()
 {
   int c;
-  
+
   while((c = getchar()) != EOF)
     {
       if (c == '\t')

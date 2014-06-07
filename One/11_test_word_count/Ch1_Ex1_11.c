@@ -4,28 +4,25 @@
 #define OUT 0    /*Outside a word*/
 
 /* Count lines, words, and characters in input */
- 
 main()
 {
-  int c;
+  int c, nl, nw, nc, state;
   int NEWLINE = '\n';
 
   state = OUT;
   while((c = getchar()) != EOF) {
+    ++nc;
     if (c == '\n') {
-      putchar(c);
+      ++nl;
     }
     if (c == ' ' || c == '\n' || c == '\t') {
       state = OUT;
     }
     else if (state == OUT) {
-      putchar(NEWLINE);
-      putchar(c);
       state = IN;
-    }
-    else {
-      putchar(c);
+      ++nw;
     }
   }
+  printf("%d %d %d\n", nl, nw, nc);
   return 0;
 }
