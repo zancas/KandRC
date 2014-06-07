@@ -8,6 +8,7 @@ main()
 {
   int c, nl, nw, nc, state;
   int NEWLINE = '\n';
+  nl = nw = nc = 0;
 
   state = OUT;
   while((c = getchar()) != EOF) {
