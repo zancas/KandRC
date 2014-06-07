@@ -10,7 +10,7 @@ main()
   int c, i, j, state, wordlength, maxobserved;
   int wordlengths[MAXWORDLENGTH];
   wordlength = maxobserved = 0;
-  
+
   for(i = 0; i < MAXWORDLENGTH; ++i)
     wordlengths[i] = 0;
 
@@ -43,7 +43,7 @@ main()
     }
     printf("\n");
     maxobserved--;
-  }  
+  }
   for (i = 0; i < MAXWORDLENGTH; ++i) {
     printf("___");
     }
