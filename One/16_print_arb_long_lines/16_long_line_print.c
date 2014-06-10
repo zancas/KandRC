@@ -15,7 +15,7 @@ main()
 	length = length + get_line();
 	printf("\nThat line was %d chars long!\n", length);
 	c = getchar();
-	if (c !=EOF)
+	if (c != EOF)
 	  {
 	    putchar(c);
 	  }

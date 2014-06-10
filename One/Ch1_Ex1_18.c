@@ -9,18 +9,18 @@ main()
   int len;                 /* current line length*/
   char line[MAXLINE];      /* current input line */
   int indexofnonw, j;
-  
+
   while ((len = get_line(line, MAXLINE)) > 0)
     {
       // Find the index of the first character not '\t' or ' ' from the end.
-      for (indexofnonw = len-1; 
+      for (indexofnonw = len-1;
 	   indexofnonw > 1 && (line[indexofnonw] == ' ' || line[indexofnonw] == '\t' || line[indexofnonw] == '\n' || line[indexofnonw] == 10);
 	   --indexofnonw)
 	;
       printf("After the for loop indexofnonw: %d\n", indexofnonw);
       if (indexofnonw!=0)
 	{
-	  char toprint[indexofnonw+1]; 
+	  char toprint[indexofnonw+1];
 	  for (j=0; j<indexofnonw; ++j)
 	    {
 	      toprint[j] = line[j];
@@ -36,7 +36,6 @@ main()
 int get_line(char s[], int lim)
 {
   int c, i;
-  
   for (i=0; i<lim-1 && (c=getchar())!=EOF && c!='\n'; i++)
     s[i] = c;
   if (c == '\n') {
