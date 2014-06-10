@@ -1,25 +1,21 @@
 #include <stdio.h>
 
-/* counts words and prints a horizontal histogram  */
+/* counts chars and prints a vertical ascii-character frequency histogram  */
 
 main()
 {
-  int MAXCHAR = 256;
+  int MAXCHAR = 128;
   int c, i, j, charcount;
-  int num_c;
   int charcounts[MAXCHAR];
+  for(i = 0; i < MAXCHAR; ++i){charcounts[i] = 0;}
   charcount = 0;
-  
-  for(i = 0; i < MAXCHAR; ++i)
-    charcounts[i] = 0;
 
   while((c = getchar()) != EOF) {
-    num_c = c-'\x00';
-    printf("%d ", num_c);
-    charcounts[num_c]++;
+    charcounts[c]++;
   }
 
   for(i = 0; i < MAXCHAR; ++i) {
+    if(charcounts[i] == 0){continue;}
     printf("%3d:", i);
     for (j = 0; j < charcounts[i]; ++j) {
       printf("*");
