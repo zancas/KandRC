@@ -4,6 +4,8 @@
 
 #define IN  1             /*inside a word*/
 #define OUT 0             /*outside a word*/
+
+
 main()
 {
   int MAXWORDLENGTH = 20;
@@ -29,6 +31,7 @@ main()
       wordlength++;
     }
   }
+  if (state == IN) {wordlengths[wordlength]++;}
   /*Initialize maxobserved.*/
   for (i = 0; i < MAXWORDLENGTH; ++i) {
     if (wordlengths[i] > maxobserved)
@@ -38,18 +41,18 @@ main()
   while (maxobserved > 0) {
     for(i = 0; i < MAXWORDLENGTH; ++i) {
       if (wordlengths[i] == maxobserved)
-	printf(" * ");
-      else printf("   ");
+	printf("  * ");
+      else printf("    ");
     }
     printf("\n");
     maxobserved--;
   }
   for (i = 0; i < MAXWORDLENGTH; ++i) {
-    printf("___");
+    printf("|___");
     }
   printf("\n");
   for (i = 0; i < MAXWORDLENGTH; ++i) {
-    printf("%3d", i);
+    printf(" %2d ", i);
     }
   printf("\n");
 
