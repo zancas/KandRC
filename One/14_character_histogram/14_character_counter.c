@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-/* counts chars and prints a vertical ascii-character frequency histogram  */
+// counts chars and prints a vertical ascii-character frequency histogram
 
 main()
 {
@@ -13,15 +13,12 @@ main()
   while((c = getchar()) != EOF) {
     charcounts[c]++;
   }
-
   for(i = 0; i < MAXCHAR; ++i) {
     if(charcounts[i] == 0){continue;}
-    printf("%3d:", i);
     for (j = 0; j < charcounts[i]; ++j) {
       printf("*");
     }
     printf("\n");
   }
-
   return 0;
 }
