@@ -11,13 +11,13 @@ main()
 {
   float fahr, celsius;
   int lower, upper, step;
-  
+
   lower = 0;    /* lower limit of temperature table */
   upper = 300;  /* upper limit of temperature table */
   step = 20;    /* step size */
 
   fahr = lower;
-  printf("== Temperature Table ==\n");  
+  printf("== Temperature Table ==\n");
   printf("Fahrenheit:    Celsius:\n");
   while (fahr <= upper) {
     celsius = fahr_to_cels(fahr);
