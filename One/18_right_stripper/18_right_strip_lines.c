@@ -14,7 +14,11 @@ main()
     {
       // Find the index of the first character not '\t' or ' ' from the end.
       for (indexofnonw = len-1;
-	   indexofnonw > 1 && (line[indexofnonw] == ' ' || line[indexofnonw] == '\t' || line[indexofnonw] == '\n' || line[indexofnonw] == 10);
+	   indexofnonw > 1 && 
+	     (line[indexofnonw] == ' '  ||
+	      line[indexofnonw] == '\t' ||
+	      line[indexofnonw] == '\n' ||
+	      line[indexofnonw] == 10);
 	   --indexofnonw)
 	;
       printf("After the for loop indexofnonw: %d\n", indexofnonw);
