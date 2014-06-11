@@ -12,26 +12,26 @@ main()
 
   while ((len = get_line(line, MAXLINE)) > 0)
     {
+      if(len == 1 && line[0] == '\n'){
+	printf("\n");
+      }
       // Find the index of the first character not '\t' or ' ' from the end.
       for (indexofnonw = len-1;
-	   indexofnonw > 1 && 
+	   indexofnonw > 0 &&
 	     (line[indexofnonw] == ' '  ||
 	      line[indexofnonw] == '\t' ||
 	      line[indexofnonw] == '\n' ||
 	      line[indexofnonw] == 10);
-	   --indexofnonw)
+	   indexofnonw--)
 	;
       printf("After the for loop indexofnonw: %d\n", indexofnonw);
-      if (indexofnonw!=0)
+      char toprint[indexofnonw+1];
+      for (j=0; j<=indexofnonw; j++)
 	{
-	  char toprint[indexofnonw+1];
-	  for (j=0; j<indexofnonw; ++j)
-	    {
-	      toprint[j] = line[j];
-	    }
-	  toprint[j] = '\0';
-	  printf("Right Stripped\n::%s::\n", toprint);
+	  toprint[j] = line[j];
 	}
+      toprint[j] = '\0';
+      printf("Right Stripped\n::%s::\n", toprint);
     }
   return 0;
 }
