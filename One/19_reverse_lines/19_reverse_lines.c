@@ -10,7 +10,7 @@ main()
   int len;                 /* current line length */
   char line[MAXLINE];      /* current input line  */
   int indexofnonw, j;
-  
+
   while ((len = get_line(line, MAXLINE)) > 0)
     {
       reverse(line, len);
@@ -23,7 +23,7 @@ main()
 int get_line(char s[], int lim)
 {
   int c, i;
-  
+
   for (i=0; i<lim-1 && (c=getchar())!=EOF && c!='\n'; i++)
     s[i] = c;
   if (c == '\n') {
