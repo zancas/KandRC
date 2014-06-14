@@ -22,10 +22,10 @@ main()
 	      line[indexofnonw] == '\t' ||
 	      line[indexofnonw] == '\n' ||
 	      line[indexofnonw] == 10);
-	   indexofnonw--)
+	   --indexofnonw)
 	;
       printf("After the for loop indexofnonw: %d\n", indexofnonw);
-      char toprint[indexofnonw+1];
+      char toprint[indexofnonw+2];
       for (j=0; j<=indexofnonw; j++)
 	{
 	  toprint[j] = line[j];
