@@ -14,23 +14,46 @@ int buffer_length;      /* Where are we in the buffer? */
 /* Replace spaces with with the appropriate number of tabs. */
 main()
 {
-  int index_inbuffer, index_outbuffer;       /* Counters */
+  printf("Hello world!\n");
+  int index_inbuffer = 0;
+  int index_outbuffer = 0;
+  int incomment_index = 0;       /* Counters */
   buffer_length = get_buffer(incomingbuffer, TOTALWIDTH);
   char outgoingbuffer[buffer_length];
-  for (index_inbuffer=0; index_inbuffer < buffer_length; ++index_inbuffer) {
-    if (INCOMMENT) {
-      if(incomingbuffer[index_inbuffer] == '/' && incomingbuffer[index_inbuffer-1] == '*') {INCOMMENT = 0;} 
-    } else if (incomingbuffer[index_inbuffer] == '*' && incomingbuffer[index_inbuffer-1] == '/') {
-      INCOMMENT = 1;
-      index_outbuffer--;
+  int i;
+  for(i=0;i<buffer_length;i++) {
+    outgoingbuffer[i]='\0';
+    printf("int i is: %i\n", i);
+  }
+  printf("finished array initialization.\n");
+  printf("buffer_length is: %i\n", buffer_length);
+  for (index_inbuffer=0;index_inbuffer < buffer_length; ++index_inbuffer) {
+    printf("index_inbuffer is: %i\n", index_inbuffer);
+    if (INCOMMENT && index_inbuffer > 0) {
+      if(incomingbuffer[index_inbuffer] == '/' && incomingbuffer[index_inbuffer-1] == '*') {INCOMMENT = 0;}
+    } else if (index_inbuffer > 0 && incomingbuffer[index_inbuffer] == '*' && incomingbuffer[index_inbuffer-1] == '/') {
+      incomment_index = index_inbuffer;
+      while (incomment_index < buffer_length) {
+	incomment_index++;
+	if (incomingbuffer[incomment_index] == '/' && incomingbuffer[incomment_index-1] == '*') {
+	  INCOMMENT = 1;
+	  if(index_outbuffer > 0) index_outbuffer--;
+	  break;
+	}
+      }
     } else {
-      outgoingbuffer[index_outbuffer] = incomingbuffer[index_inbuffer];
-      index_outbuffer++;
+      printf("NOT CORRECT!");
+      printf("index_outbuffer: %i\n", index_outbuffer);
+      printf("index_inbuffer: %i\n", index_inbuffer);
+      outgoingbuffer[index_outbuffer++] = incomingbuffer[index_inbuffer];
+      printf("index_outbuffer: %i\n", index_outbuffer);
     }
   }
-  index_outbuffer++;
+  printf("buffer_length: %i\n", buffer_length);
+
+  printf("%s\n", outgoingbuffer);
   outgoingbuffer[index_outbuffer] = '\0';
-  printf("%s", outgoingbuffer);
+  printf("%s\n", outgoingbuffer);
   return 0;
 }
 
@@ -40,9 +63,13 @@ main()
 int get_buffer(char s[], int lim)
 {
   int c, i;
-  for (i=0; i<lim-1 && (c=getchar())!= EOF; i++)
+  for (i=0; i<lim-1 && (c=getchar())!= EOF; i++){
+    printf("%i\n", i);
     s[i] = c;
-  s[i] = '\0';
+  }
+  s[i++] = '\0';
+  printf("incoming buffer is: %s\n", s);
+  printf("incoming buffer length is: %i\n", i);
   return i;
 }
 
