@@ -18,9 +18,9 @@
       To account for '1' simply subtract 1 from the initiator count every time a terminator
       is encountered.
       *  If the number of initiators drops below 0, the code is unbalanced
-      To account for '2', at the end of the buffer, count the number of initiators (after the 
+      To account for '2', at the end of the buffer, count the number of initiators (after the
       above accounting).
-      *  If the number of iniators is not 0 (it must be > since we already checked for <), 
+      *  If the number of iniators is not 0 (it must be > since we already checked for <),
       then the code is unbalanced. */
 
 int get_buffer(char s[], int lim);
@@ -39,21 +39,21 @@ main()
   int index_inbuffer;       /* Counters */
   buffer_length = get_buffer(incomingbuffer, TOTALWIDTH);
   for (index_inbuffer=0; index_inbuffer < buffer_length; ++index_inbuffer) {
-    if (incomment) {   
+    if (incomment) {
       /* If syntax correct we're in a comment. */
-      if(incomingbuffer[index_inbuffer] == '/' && incomingbuffer[index_inbuffer-1] == '*') {incomment = 0;} 
+      if(incomingbuffer[index_inbuffer] == '/' && incomingbuffer[index_inbuffer-1] == '*') {incomment = 0;}
     } else if (incomingbuffer[index_inbuffer] == '*' && incomingbuffer[index_inbuffer-1] == '/') {
-      incomment = 1;      
-    } else if (doublequotes%2 == 1) { 
+      incomment = 1;
+    } else if (doublequotes%2 == 1) {
       /* If syntax correct, we're inside double quotes. */
-      if(incomingbuffer[index_inbuffer] == '"' && incomingbuffer[index_inbuffer-1] != '\\') {doublequotes++;} 
+      if(incomingbuffer[index_inbuffer] == '"' && incomingbuffer[index_inbuffer-1] != '\\') {doublequotes++;}
     } else if (incomingbuffer[index_inbuffer] == '"' && incomingbuffer[index_inbuffer-1] != '\\') {
-      doublequotes++;      
-    } else if (singlequotes%2 == 1) { 
+      doublequotes++;
+    } else if (singlequotes%2 == 1) {
       /* If syntax correct, we're inside single quotes. */
-      if(incomingbuffer[index_inbuffer] == '\'' && incomingbuffer[index_inbuffer-1] != '\\') {singlequotes++;} 
+      if(incomingbuffer[index_inbuffer] == '\'' && incomingbuffer[index_inbuffer-1] != '\\') {singlequotes++;}
     } else if (incomingbuffer[index_inbuffer] == '\'' && incomingbuffer[index_inbuffer-1] != '\\') {
-      singlequotes++;      
+      singlequotes++;
     } else if (incomingbuffer[index_inbuffer] == '{' && incomingbuffer[index_inbuffer-1] != '\\') {
       /* If syntax correct we're inside squiggles. */
       squiggle_opens++;
@@ -75,7 +75,7 @@ main()
     if (paren_opens < 0) {return 2;}
     if (brace_opens < 0) {return 3;}
   }
-  
+
   if (squiggle_opens != 0) {
     printf("The were %d squiggle_opens after processing finished.\n", squiggle_opens);
     return 4;
