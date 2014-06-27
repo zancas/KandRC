@@ -41,8 +41,13 @@ main()
 	  break;
 	}
       }
+      if(!INCOMMENT) {
+      printf("index_outbuffer: %i\n", index_outbuffer);
+      printf("index_inbuffer: %i\n", index_inbuffer);
+      outgoingbuffer[index_outbuffer++] = incomingbuffer[index_inbuffer];
+      printf("index_outbuffer: %i\n", index_outbuffer);
+      }
     } else {
-      printf("NOT CORRECT!");
       printf("index_outbuffer: %i\n", index_outbuffer);
       printf("index_inbuffer: %i\n", index_inbuffer);
       outgoingbuffer[index_outbuffer++] = incomingbuffer[index_inbuffer];
