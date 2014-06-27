@@ -2,11 +2,8 @@
 #define TOTALWIDTH 100000  /* Max size of the input buffer. */
 
 
-/* COMMENTS:  Obviously characters inside comments are not handled as part of the C
-   syntax, therefore we ignore them in the following way:
-   The procedure is that comment beginning '/*''s are used to
-   indicate comment entry. Comment state is recorded with an incomment
-   boolean flag. chars are not parsed while incomment is 1 */
+/* COMMENTS:  Comments are excised using the comment excision program from exerise 23.  To also handle
+      '//' type comments that code will be extended.*/
 
 /* BALANCING:  How are we to know if characters-that-require-balance are unbalanced?
    This can happen in two ways:

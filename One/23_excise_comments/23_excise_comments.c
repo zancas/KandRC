@@ -14,7 +14,6 @@ int buffer_length;      /* Where are we in the buffer? */
 /* Replace spaces with with the appropriate number of tabs. */
 main()
 {
-  printf("Hello world!\n");
   int index_inbuffer = 0;
   int index_outbuffer = 0;
   int incomment_index = 0;       /* Counters */
