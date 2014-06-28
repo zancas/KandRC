@@ -2,6 +2,8 @@
 #define TOTALWIDTH 100000  /* Max size of the input buffer. */
 int INCOMMENT = 0;
 
+// MAKE THIS A FUNCTION TO USE IN 24.
+
 /* The fundamental procedure is that comment beginning '/*''s are used to
    indicate comment entry. Comment state is recorded with an INCOMMENT
    boolean flag. putchar is not called while INCOMMENT is 1 */
