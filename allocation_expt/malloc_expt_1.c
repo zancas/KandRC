@@ -15,6 +15,7 @@ int main(int argc, char **argv)
     printf("Must pass 1 argument!\n");
     return -1;
   }
+  printf("%s\n", argv[1]);
   char* packed_array;
   return 0;
 }
