@@ -50,13 +50,13 @@ char* excise_comments(char* code_array, char* excised_array){
   // Case (3)  The current index is not in a comment.
   for (index_inbuffer=0;index_inbuffer < buffer_length; ++index_inbuffer) {
     if (INCOMMENT) {
-      if(slash_slash) {
-	if(code_array[index_inbuffer] == '\n') {
+      if (slash_slash) {
+	if (code_array[index_inbuffer] == '\n') {
 	  INCOMMENT = 0;
 	  slash_slash = 0;
 	  excised_array[index_outbuffer++] = '\n';
 	}/*Also this/* // */
-      } else if(code_array[index_inbuffer] == '/' && code_array[index_inbuffer-1] == '*') {INCOMMENT = 0;}
+      } else if (code_array[index_inbuffer] == '/' && code_array[index_inbuffer-1] == '*') {INCOMMENT = 0;}
     } else if (index_inbuffer > 0 && code_array[index_inbuffer] == '/' && code_array[index_inbuffer-1] == '/') {
       slash_slash = 1;
       INCOMMENT = 1;
@@ -71,14 +71,13 @@ char* excise_comments(char* code_array, char* excised_array){
 	  break;
 	}
       }
-      if(!INCOMMENT) {
+      if (!INCOMMENT) {
 	excised_array[index_outbuffer++] = code_array[index_inbuffer];
       }
     } else {
       excised_array[index_outbuffer++] = code_array[index_inbuffer];
     }
   }
-
   excised_array[index_outbuffer] = '\0';
   excised_array = realloc(excised_array, index_outbuffer+1);
   return excised_array;
