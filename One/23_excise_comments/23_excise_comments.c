@@ -56,8 +56,7 @@ char* excise_comments(char* code_array, char* excised_array){
 	  slash_slash = 0;
 	  excised_array[index_outbuffer++] = '\n';
 	}/*Also this/* // */
-      }
-      if(code_array[index_inbuffer] == '/' && code_array[index_inbuffer-1] == '*') {INCOMMENT = 0;}
+      } else if(code_array[index_inbuffer] == '/' && code_array[index_inbuffer-1] == '*') {INCOMMENT = 0;}
     } else if (index_inbuffer > 0 && code_array[index_inbuffer] == '/' && code_array[index_inbuffer-1] == '/') {
       slash_slash = 1;
       INCOMMENT = 1;
