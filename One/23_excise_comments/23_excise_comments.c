@@ -21,7 +21,7 @@ int main(int argc, char** argv)
   char* commentless_c = (char *) malloc(1);
   raw_c_array = read_file_chars_into_heap_array(argv[1], raw_c_array);
   commentless_c = excise_comments(raw_c_array, commentless_c);
-  printf("%s\n", commentless_c);
+  printf("Post Excision:\n%s\n", commentless_c);
   free(commentless_c);
   free(raw_c_array);
   return 0;
@@ -82,7 +82,6 @@ char* excise_comments(char* code_array, char* excised_array){
 
   excised_array[index_outbuffer] = '\0';
   excised_array = realloc(excised_array, index_outbuffer+1);
-  printf("%s", excised_array);
   return excised_array;
 }
 
@@ -103,6 +102,5 @@ char* read_file_chars_into_heap_array(char* filename, char* heap_chars){
   }
   heap_chars[k] = '\0';
   fclose(fp);
-  printf("%s\n", heap_chars);
   return heap_chars;
 }
