@@ -84,7 +84,6 @@ char* read_file_chars_into_heap_array(char* filename, char* heap_chars){
   return heap_chars;
 }
 
-
 /* BALANCING:  How are we to know if characters-that-require-balance are unbalanced?
    This can happen in two ways:
       -- 1:  The number of termination characters is greater than the number of initiator
@@ -101,10 +100,10 @@ char* read_file_chars_into_heap_array(char* filename, char* heap_chars){
       then the code is unbalanced. */
 
 /* Replace spaces with with the appropriate number of tabs. */
-int main(int argc, char** argv)
+
+int balance_c_syntax(char* unchecked_c_char_array);
 {
-  char incomingbuffer[TOTALWIDTH];     /* An array that holds the buffer under process. */
-  int buffer_length;      /* Where are we in the buffer? */
+  int buffer_length = 0;      /* Where are we in the buffer? */
   int squiggle_opens = 0;
   int paren_opens = 0;
   int brace_opens = 0;
@@ -112,37 +111,39 @@ int main(int argc, char** argv)
   int singlequotes = 0;
   int incomment = 0;
   int index_inbuffer;       /* Counters */
-  buffer_length = get_buffer(incomingbuffer, TOTALWIDTH);
+  buffer_length = strlen(unchecked_c_char_array);
   for (index_inbuffer=0; index_inbuffer < buffer_length; ++index_inbuffer) {
-    if (incomment) {
-      /* If syntax correct we're in a comment. */
-      if(incomingbuffer[index_inbuffer] == '/' && incomingbuffer[index_inbuffer-1] == '*') {incomment = 0;}
-    } else if (incomingbuffer[index_inbuffer] == '*' && incomingbuffer[index_inbuffer-1] == '/') {
-      incomment = 1;
-    } else if (doublequotes%2 == 1) {
-      /* If syntax correct, we're inside double quotes. */
-      if(incomingbuffer[index_inbuffer] == '"' && incomingbuffer[index_inbuffer-1] != '\\') {doublequotes++;}
-    } else if (incomingbuffer[index_inbuffer] == '"' && incomingbuffer[index_inbuffer-1] != '\\') {
-      doublequotes++;
-    } else if (singlequotes%2 == 1) {
-      /* If syntax correct, we're inside single quotes. */
-      if(incomingbuffer[index_inbuffer] == '\'' && incomingbuffer[index_inbuffer-1] != '\\') {singlequotes++;}
-    } else if (incomingbuffer[index_inbuffer] == '\'' && incomingbuffer[index_inbuffer-1] != '\\') {
-      singlequotes++;
-    } else if (incomingbuffer[index_inbuffer] == '{' && incomingbuffer[index_inbuffer-1] != '\\') {
+
+   if (unchecked_c_char_array[index_inbuffer] == '"'){
+      if (doublequotes%2 != 1) {doublequotes++;}
+	/* If syntax correct, we're inside double quotes. */
+      else if(unchecked_c_char_array[index_inbuffer-1] != '\\') {doublequotes++;}
+    }
+
+    else if (unchecked_c_char_array[index_inbuffer] == '\''){
+      if (singlequotes%2 != 1) {singlequotes++;}
+	/* If syntax correct, we're inside double quotes. */
+      else if(unchecked_c_char_array[index_inbuffer-1] != '\\') {singlequotes++;}
+    }
+
+    else if (unchecked_c_char_array[index_inbuffer] == '{' && unchecked_c_char_array[index_inbuffer-1] != '\\') {
       /* If syntax correct we're inside squiggles. */
       squiggle_opens++;
-    } else if (incomingbuffer[index_inbuffer] == '}' && incomingbuffer[index_inbuffer-1] != '\\') {
+    } else if (unchecked_c_char_array[index_inbuffer] == '}' && unchecked_c_char_array[index_inbuffer-1] != '\\') {
       squiggle_opens--;
-    } else if (incomingbuffer[index_inbuffer] == '(' && incomingbuffer[index_inbuffer-1] != '\\') {
+    }
+
+    else if (unchecked_c_char_array[index_inbuffer] == '(' && unchecked_c_char_array[index_inbuffer-1] != '\\') {
       /* If syntax correct we're inside parens. */
       paren_opens++;
-    } else if (incomingbuffer[index_inbuffer] == ')' && incomingbuffer[index_inbuffer-1] != '\\') {
+    } else if (unchecked_c_char_array[index_inbuffer] == ')' && unchecked_c_char_array[index_inbuffer-1] != '\\') {
       paren_opens--;
-    } else if (incomingbuffer[index_inbuffer] == '[' && incomingbuffer[index_inbuffer-1] != '\\') {
+    }
+
+    else if (unchecked_c_char_array[index_inbuffer] == '[' && unchecked_c_char_array[index_inbuffer-1] != '\\') {
       /* If syntax correct we're inside braces. */
       brace_opens++;
-    } else if (incomingbuffer[index_inbuffer] == ']' && incomingbuffer[index_inbuffer-1] != '\\') {
+    } else if (unchecked_c_char_array[index_inbuffer] == ']' && unchecked_c_char_array[index_inbuffer-1] != '\\') {
       brace_opens--;
     }
     /* If test to see if we already know about a syntax error. */
@@ -176,13 +177,7 @@ int main(int argc, char** argv)
 }
 
 
-
-/* get_buffer: read a buffer into s, return length */
-int get_buffer(char s[], int lim)
-{
-  int c, i;
-  for (i=0; i<lim-1 && (c=getchar())!= EOF; i++)
-    s[i] = c;
-  s[i] = '\0';
-  return i;
+int main(int argc, char** argv){
+  printf("Fool.\n");
+  return 0;
 }
