@@ -100,19 +100,17 @@ char* read_file_chars_into_heap_array(char* filename, char* heap_chars){
       *  If the number of iniators is not 0 (it must be > since we already checked for <),
       then the code is unbalanced. */
 
-char incomingbuffer[TOTALWIDTH];     /* An array that holds the buffer under process. */
-int buffer_length;      /* Where are we in the buffer? */
-int squiggle_opens = 0;
-int paren_opens = 0;
-int brace_opens = 0;
-int doublequotes = 0;
-int singlequotes = 0;
-int incomment = 0;
-
-
 /* Replace spaces with with the appropriate number of tabs. */
-main()
+int main(int argc, char** argv)
 {
+  char incomingbuffer[TOTALWIDTH];     /* An array that holds the buffer under process. */
+  int buffer_length;      /* Where are we in the buffer? */
+  int squiggle_opens = 0;
+  int paren_opens = 0;
+  int brace_opens = 0;
+  int doublequotes = 0;
+  int singlequotes = 0;
+  int incomment = 0;
   int index_inbuffer;       /* Counters */
   buffer_length = get_buffer(incomingbuffer, TOTALWIDTH);
   for (index_inbuffer=0; index_inbuffer < buffer_length; ++index_inbuffer) {
