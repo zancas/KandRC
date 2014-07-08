@@ -36,7 +36,7 @@ char* excise_comments(char* code_array, char* excised_array){
 	  INCOMMENT = 0;
 	  slash_slash = 0;
 	  excised_array[index_outbuffer++] = '\n';
-	}/*Also this/* // */
+	}
       } else if (code_array[index_inbuffer] == '/' && code_array[index_inbuffer-1] == '*') {INCOMMENT = 0;}
     } else if (index_inbuffer > 0 && code_array[index_inbuffer] == '/' && code_array[index_inbuffer-1] == '/') {
       slash_slash = 1;
@@ -101,7 +101,7 @@ char* read_file_chars_into_heap_array(char* filename, char* heap_chars){
 
 /* Replace spaces with with the appropriate number of tabs. */
 
-int balance_c_syntax(char* unchecked_c_char_array);
+int balance_c_syntax(char* unchecked_c_char_array)
 {
   int buffer_length = 0;      /* Where are we in the buffer? */
   int squiggle_opens = 0;
@@ -178,6 +178,18 @@ int balance_c_syntax(char* unchecked_c_char_array);
 
 
 int main(int argc, char** argv){
-  printf("Fool.\n");
+  if(argc != 2){
+    printf("You must pass the name of the file to analyze, as the only argument. \n");
+    return -1;
+  }
+  printf("Filename: %s\n", argv[1]);
+  char* raw_c_array = (char *) malloc(1);
+  char* commentless_c = (char *) malloc(1);
+  raw_c_array = read_file_chars_into_heap_array(argv[1], raw_c_array);
+  commentless_c = excise_comments(raw_c_array, commentless_c);
+  printf("Post Excision:\n%s\n", commentless_c);
+  balance_c_syntax(commentless_c);{{{{
+  free(commentless_c);
+  free(raw_c_array);
   return 0;
 }
