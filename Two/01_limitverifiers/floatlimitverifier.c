@@ -5,7 +5,7 @@ void float_rangefinder(void);
 float exponentiator(float base, int exponent);
 
 /* Problems:
-   (1)  Precision limits of floats may make arithmetic operands to insiginificant to change the size of the large floating operand.
+   (1)  Precision limits of floats may make arithmetic operands too insiginificant to change the size of the large floating operand.
    (2)  The Epsilon limit, again (I _think_) a product of the number of bits in the significand, of floats makes multiplication by small numbers of limited utility.
    (3)  All this suggests the invention of a new type for the resolution of the range problem..  to be continued...*/
 
@@ -43,9 +43,9 @@ void float_rangefinder(void) {
   while (final_val != prev) {
     prevprev = exponentiator(2, exponent-1);
     prev = exponentiator(2, exponent);
-    exponent++;  
+    exponent++;
     final_val = exponentiator(2, exponent);
-  }  
+  }
   /* Set values.  AAAAKKK...   need a better type for this. */
   final_val = prevprev;
 
@@ -75,7 +75,7 @@ void float_rangefinder(void) {
     lastiteration = final_val;
     prevmultfact = multfact;
     multfact = multfact + digit/exponentiator(10, exponent);
-    printf("multfact is: %f\n", multfact);    
+    printf("multfact is: %f\n", multfact);
     final_val = final_val * multfact;
     printf("final_val is: %f\n", final_val);
     while (final_val == prev && exponent < 20) {
@@ -86,13 +86,13 @@ void float_rangefinder(void) {
 	final_val = final_val * multfact;
 	digit--;
       }
-      printf("multfact is: %.20f\n", multfact);    
+      printf("multfact is: %.20f\n", multfact);
       printf("final_val is: %.20f\n", final_val);
       exponent++;
     }
     exponent++;
     stopper++;
-  }; 
+  };
   final_val = iterbeforelast;
   printf("multfact is: %f\n", multfact);
   printf("Maximum float size is: %f\n", final_val);
@@ -105,6 +105,5 @@ float exponentiator(float base, int exponent) {
   for ( i = 0; i < exponent; i++) {
     result = result * base;
   }
-  
   return result;
 }
