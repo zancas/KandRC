@@ -9,10 +9,11 @@ void float_rangefinder(void);
 float exponentiator(float base, int exponent);
 
 int main(int argc, char** argv) {
-  printf("Limit:\t\tValue:\n");
+  printf("Limit According to limits.h:\t\tValue:\n");
   printf("--------------------------------------\n");
   printf("CHAR_MAX:\t% d\n", CHAR_MAX);
   printf("CHAR_MAX>>1:\t% d\n", CHAR_MAX>>1);
+  printf("CHAR_MAX+1:\t% d\n", CHAR_MAX+1);
   printf("CHAR_MIN:\t% d\n", CHAR_MIN);
   printf("UCHAR_MAX:\t% d\n", UCHAR_MAX);
   printf("INT_MAX:\t% d\n", INT_MAX);
@@ -91,7 +92,6 @@ void ulong_rangefinder(void) {
   printf("Minimum ulong size is: %lu\n", min_size);
 }
 
-
 void float_rangefinder(void) {
   float pp_val = 0;
   float prev_val = 0;
@@ -118,18 +118,6 @@ void float_rangefinder(void) {
   int decrementer = 0;
   float new_test = 17014118346046923173168730371588410572.;
   printf("new_test: %f\n", new_test);
-  /*while (new_test == dec_float) {
-    newttestfloat = newttestfloat - decrementer;
-    decrementer++;
-  }
-  exponent = tester = 1;
-  prev_val = 0;
-  while (prev_val != tester) {
-    tester = exponentiator(.5, exponent);
-    exponent++;
-  }
-  printf("Minimum float size is: %f\n", tester);*/
-
 }
 
 
