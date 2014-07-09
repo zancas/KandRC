@@ -9,7 +9,7 @@ float exponentiator(float base, int exponent);
    (2)  The Epsilon limit, again (I _think_) a product of the number of bits in the significand, of floats makes multiplication by small numbers of limited utility.
    (3)  All this suggests the invention of a new type for the resolution of the range problem..  to be continued...*/
 
-main() {
+int main(int argc, char** argv) {
   printf("Limit:\t\tValue:\n");
   printf("--------------------------------------\n");
   printf("Limit:\t\tValue:\n");
@@ -49,13 +49,11 @@ void float_rangefinder(void) {
   /* Set values.  AAAAKKK...   need a better type for this. */
   final_val = prevprev;
 
-  float outofbounds = prev;
-  double newfinalval = final_val*2;
   int i = 1;
   /* while */
   long long int testint;
   testint = 1;
-  printf("testint: %d\n", testint);
+  printf("testint: %lld\n", testint);
   exponent = 1;
   printf("Maximum * float size is: %f\n", final_val);
   float anotherfloat = final_val * .999999;
