@@ -5,30 +5,29 @@ void float_rangefinder(void);
 float exponentiator(float base, int exponent);
 
 /* Problems:
-   (1)  Precision limits of floats may make arithmetic operands too insiginificant to change the size of the large floating operand.
+   (1)  Precision limits of floats may make arithmetic operands too insignificant to change the size of the large floating operand.???  What the Hell does this mean?
    (2)  The Epsilon limit, again (I _think_) a product of the number of bits in the significand, of floats makes multiplication by small numbers of limited utility.
    (3)  All this suggests the invention of a new type for the resolution of the range problem..  to be continued...*/
 
 int main(int argc, char** argv) {
-  printf("Limit:\t\tValue:\n");
+  printf("Limits from float.h:\tValue:\n");
   printf("--------------------------------------\n");
-  printf("Limit:\t\tValue:\n");
-  printf("FLT_RADIX:\t% d\n", FLT_RADIX);
-  printf("FLT_ROUNDS:\t% d\n", FLT_ROUNDS);
-  printf("FLT_DIG:\t% d\n", FLT_DIG);
-  printf("FLT_EPSILON:\t%.20f\n", FLT_EPSILON);
-  printf("FLT_MANT_DIG:\t% d\n", FLT_MANT_DIG);
-  printf("FLT_MAX:\t% f\n",  FLT_MAX);
-  printf("FLT_MAX_EXP:\t% d\n", FLT_MAX_EXP);
-  printf("FLT_MIN:\t%.20f\n", FLT_MIN);
-  printf("FLT_MIN_EXP:\t% d\n", FLT_MIN_EXP);
-  printf("DBL_DIG:\t% d\n", DBL_DIG);
-  printf("DBL_EPSILON:\t%.20f\n", DBL_EPSILON);
-  printf("DBL_MANT_DIG:\t% d\n", DBL_MANT_DIG);
-  printf("DBL_MAX:\t% f\n", DBL_MAX);
-  printf("DBL_MAX_EXP:\t% d\n", DBL_MAX_EXP);
-  printf("DBL_MIN:\t%.390f\n", DBL_MIN);
-  printf("DBL_MIN_EXP:\t% d\n", DBL_MIN_EXP);
+  printf("FLT_RADIX:\t\t% d\n", FLT_RADIX);
+  printf("FLT_ROUNDS:\t\t% d\n", FLT_ROUNDS);
+  printf("FLT_DIG:\t\t% d\n", FLT_DIG);
+  printf("FLT_EPSILON:\t\t%.20f\n", FLT_EPSILON);
+  printf("FLT_MANT_DIG:\t\t% d\n", FLT_MANT_DIG);
+  printf("FLT_MAX:\t\t% f\n",  FLT_MAX);
+  printf("FLT_MAX_EXP:\t\t% d\n", FLT_MAX_EXP);
+  printf("FLT_MIN:\t\t%.20f\n", FLT_MIN);
+  printf("FLT_MIN_EXP:\t\t% d\n", FLT_MIN_EXP);
+  printf("DBL_DIG:\t\t% d\n", DBL_DIG);
+  printf("DBL_EPSILON:\t\t%.20f\n", DBL_EPSILON);
+  printf("DBL_MANT_DIG:\t\t% d\n", DBL_MANT_DIG);
+  printf("DBL_MAX:\t\t% f\n", DBL_MAX);
+  printf("DBL_MAX_EXP:\t\t% d\n", DBL_MAX_EXP);
+  printf("DBL_MIN:\t\t%.390f\n", DBL_MIN);
+  printf("DBL_MIN_EXP:\t\t% d\n", DBL_MIN_EXP);
   printf("--------------------------------------\n");
   float_rangefinder();
   return 0;
@@ -97,7 +96,7 @@ void float_rangefinder(void) {
 }
 
 float exponentiator(float base, int exponent) {
-  /* Calculates 2 raised to the exponent. */
+  /* Calculates base raised to the exponent. */
   float result = 1;
   int i;
   for ( i = 0; i < exponent; i++) {
