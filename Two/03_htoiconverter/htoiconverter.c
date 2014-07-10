@@ -3,10 +3,13 @@ int htoi(char charrepofhex[], int len);
 int exponentiator(int base, int exponent);
 int fromhexbuffer[1000];
 int fromh;
-main() 
+int main(int argc, char** argv)
 {
-  char testarray[2] = "11";
-  fromh = htoi(testarray, 1);
+  if (argc != 2) {
+    printf("You must pass a string of hexchars to convert to decimal as argument.\n");
+    return -1;
+  }
+  fromh = htoi(argv[1], 1);
   return 0;
 }
 
