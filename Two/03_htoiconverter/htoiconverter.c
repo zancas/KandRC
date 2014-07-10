@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 int htoi(char charrepofhex[], int len);
 int exponentiator(int base, int exponent);
 int fromhexbuffer[1000];
@@ -9,19 +11,26 @@ int main(int argc, char** argv)
     printf("You must pass a string of hexchars to convert to decimal as argument.\n");
     return -1;
   }
-  fromh = htoi(argv[1], 1);
+  fromh = htoi(argv[1], strlen(argv[1]));
   return 0;
 }
 
 
-int htoi(char charrepofhex[], int length){
-  int forwardindex, revindex, result;
-  revindex = result = 0;
-  char reversed[length];
-  for(forwardindex = length; forwardindex >=0 ; --forwardindex, ++revindex){
+int htoi(char* charrepofhex, int length){
+  //printf(charrepofhex);
+  int forwardindex;
+  int revindex;
+  int result;
+  revindex = 0;
+  result = 0;
+  printf("length: %i\n", length);
+  char* reversed = (char*) calloc(length, 1);
+  for(forwardindex = length-1; forwardindex >=0 ; --forwardindex, ++revindex){
     reversed[revindex] = charrepofhex[forwardindex];
+    printf("revindex: %d\n", revindex);
+    printf("forwardindex: %d\n", forwardindex);
   }
-  for(revindex=0; revindex<=length; revindex++){
+  for(revindex=0; revindex<length; revindex++){
     printf("revindex: %d\n", revindex);
     printf("reversed[revindex]: %d\n", reversed[revindex]);
     printf("reversed[revindex]-'0': %d\n", reversed[revindex]-'0');
@@ -50,6 +59,7 @@ int htoi(char charrepofhex[], int length){
     }
   }
   printf("\nresult: %d\n", result);
+  free(reversed);
   return result;
 }
 
@@ -61,6 +71,5 @@ int exponentiator(int base, int exponent) {
     result = result * base;
     printf("How many times does exponentiator execute?\n");
   }
-  
   return result;
 }
