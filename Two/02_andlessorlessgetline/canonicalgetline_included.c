@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-main() {
+int main() {
   const int SIZE = 1000;  /* How big is the biggest line we want to process? */
   char line[SIZE];
   int linelength;
