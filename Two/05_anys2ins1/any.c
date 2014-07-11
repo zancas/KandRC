@@ -3,11 +3,11 @@
 
 int any(char s1[], char s2[]);
 
-main() 
+int main(int argc, char** argv)
 {
   char teststring[17] = "Tsta strng n.";
   char vowels[6] = "aeiou";
-  
+
   printf("Where char was found: %d\n", any(teststring, vowels));
 }
 
@@ -20,7 +20,7 @@ int any(char s1[], char s2[]) {
       if (s1[i] == s2[k]) {
 	charfound = 1;
 	break;
-      } 
+      }
       else if (s2[k] == '\0'){
 	break;
       }else {k++;}
