@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 /* squeeze out all chars in s1 that match any char in s2  */
 
 void squeezeouts(char s1[], char s2[]);
@@ -13,15 +11,10 @@ int main(int argc, char** argv)
   }
   char* parent;
   char* targets;
-  parent = (char*) calloc(strlen(argv[1]), 1);
-  targets = (char*) calloc(strlen(argv[2]), 1);
   parent = argv[1];
-  printf("parent is %s.\n", parent);
-
-  //squeezeouts(teststring, vowels);
-  //printf("teststring: %s\n", teststring);
-  free(parent);
-  free(targets);
+  targets = argv[2];
+  squeezeouts(parent, targets);
+  printf("parent: %s", parent);
   return 0;
 }
 
