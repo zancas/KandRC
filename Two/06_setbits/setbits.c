@@ -4,7 +4,7 @@
 
 int setbits(int i1, int start, int numbits, int i2);
 
-main() 
+main()
 {
   printf("result: %d\n", setbits(15,1,1,16));
 }
