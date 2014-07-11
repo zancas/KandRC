@@ -1,7 +1,7 @@
 #include <stdio.h>
 /* squeeze out all chars in s1 that match any char in s2  */
 
-void squeezeouts(char s1[], char s2[]);
+char* squeezeouts(char s1[], char s2[]);
 
 int main(int argc, char** argv)
 {
@@ -13,12 +13,12 @@ int main(int argc, char** argv)
   char* targets;
   parent = argv[1];
   targets = argv[2];
-  squeezeouts(parent, targets);
+  parent = squeezeouts(parent, targets);
   printf("parent: %s", parent);
   return 0;
 }
 
-void squeezeouts(char* s1, char* s2) {
+char* squeezeouts(char* s1, char* s2) {
   int i ,j, k;
   for(i = j = 0; s1[i] != '\0'; i++) {
     k = 0;
@@ -31,4 +31,5 @@ void squeezeouts(char* s1, char* s2) {
     }
   }
   s1[j] = '\0';
+  return s1;
 }
