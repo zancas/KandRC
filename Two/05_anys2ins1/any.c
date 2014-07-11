@@ -5,10 +5,16 @@ int any(char s1[], char s2[]);
 
 int main(int argc, char** argv)
 {
-  char teststring[17] = "Tsta strng n.";
-  char vowels[6] = "aeiou";
-
-  printf("Where char was found: %d\n", any(teststring, vowels));
+  if (argc != 3) {
+    printf("You must pass 2 strings to this function, the first index of the first");
+    printf(" containing a char also in the second will be returned.\n");
+    return -1;
+  }
+  char* parent;
+  char* targets;
+  parent = argv[1];
+  targets = argv[2];
+  printf("Result: %d\n", any(parent, targets));
 }
 
 int any(char s1[], char s2[]) {
