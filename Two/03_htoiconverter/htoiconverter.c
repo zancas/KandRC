@@ -12,30 +12,23 @@ int main(int argc, char** argv)
     return -1;
   }
   fromh = htoi(argv[1], strlen(argv[1]));
+  printf("Result: %d\n", fromh);
   return 0;
 }
 
 
 int htoi(char* charrepofhex, int length){
-  //printf(charrepofhex);
   int forwardindex;
   int revindex;
   int result;
   revindex = 0;
   result = 0;
-  printf("length: %i\n", length);
   char* reversed = (char*) calloc(length, 1);
   for(forwardindex = length-1; forwardindex >=0 ; --forwardindex, ++revindex){
     reversed[revindex] = charrepofhex[forwardindex];
-    printf("revindex: %d\n", revindex);
-    printf("forwardindex: %d\n", forwardindex);
   }
   for(revindex=0; revindex<length; revindex++){
-    printf("revindex: %d\n", revindex);
-    printf("reversed[revindex]: %d\n", reversed[revindex]);
-    printf("reversed[revindex]-'0': %d\n", reversed[revindex]-'0');
     if (reversed[revindex] == 'a' || reversed[revindex] == 'A') {
-      printf("Are we executng this?\n");
       result = result + 10 * exponentiator(16, revindex);
     }
     else if (reversed[revindex] == 'b' || reversed[revindex] == 'B') {
@@ -55,10 +48,8 @@ int htoi(char* charrepofhex, int length){
     }
     else {
       result = result + (reversed[revindex] - '0') * exponentiator(16, revindex);
-      printf("result = %d\n", result);
     }
   }
-  printf("\nresult: %d\n", result);
   free(reversed);
   return result;
 }
@@ -69,7 +60,6 @@ int exponentiator(int base, int exponent) {
   int i;
   for ( i = 0; i < exponent; i++) {
     result = result * base;
-    printf("How many times does exponentiator execute?\n");
   }
   return result;
 }
