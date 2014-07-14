@@ -21,15 +21,25 @@ int main(int argc, char** argv)
 
 int setbits(int i1, int start, int numbits, int i2) {
   int i2lastnumbits, i1zeroedrightofstart, rightmostbits;
+  printf("INT_MAX: %d\n", INT_MAX);
+  printf("INT_MIN: %d\n", INT_MIN);
+  double bits = 0;
+  int MAX = INT_MAX;
+  while(MAX!=0){
+    bits++;
+    MAX = MAX<<1;
+    printf("MAX = %d\n", MAX);
+    printf("bits = %f\n", bits);
+  }
   printf("i1: %d\n", i1);
-  i1zeroedrightofstart = i1 & (255<<start);
+  i1zeroedrightofstart = i1 & ((int)pow(2.0,bits-1)<<start);
   printf("i1zeroedrightofstart: %d\n", i1zeroedrightofstart);
   printf("i2: %d\n", i2);
-  i2lastnumbits = i2 & ~(255<<numbits);
+  i2lastnumbits = i2 & ~((int)pow(2.0,bits-1)<<numbits);
   printf("i2lastnumbits: %d\n", i2lastnumbits);
-  i2lastnumbits <<= 8-(start+numbits);
+  i2lastnumbits <<= (int)bits-(start+numbits);
   printf("i2lastnumbits: %d\n", i2lastnumbits);
-  rightmostbits = i1 & ~(255<<(8-(start+numbits)));
+  rightmostbits = i1 & ~((int)pow(2.0, bits-1)<<((int)bits-(start+numbits)));
   printf("rightmostbits: %d\n", rightmostbits);
   i1 <<= 1;
   printf("i1: %d\n", i1);

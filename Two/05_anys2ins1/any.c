@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 /* return index of first occurence of a chars in s1 that matches any char in s2  */
 
 int any(char s1[], char s2[]);
