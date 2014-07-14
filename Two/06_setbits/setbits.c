@@ -28,11 +28,9 @@ int setbits(int i1, int start, int numbits, int i2) {
   while(MAX!=0){
     bits++;
     MAX = MAX<<1;
-    printf("MAX = %d\n", MAX);
-    printf("bits = %f\n", bits);
   }
   printf("i1: %d\n", i1);
-  i1zeroedrightofstart = i1 & ((int)pow(2.0,bits-1)<<start);
+  i1zeroedrightofstart = i1 & ((int)pow(2.0,bits)<<start);
   printf("i1zeroedrightofstart: %d\n", i1zeroedrightofstart);
   printf("i2: %d\n", i2);
   i2lastnumbits = i2 & ~((int)pow(2.0,bits-1)<<numbits);
