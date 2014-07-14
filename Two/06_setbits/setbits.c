@@ -25,19 +25,26 @@ int setbits(int i1, int start, int numbits, int i2) {
   printf("INT_MIN: %d\n", INT_MIN);
   double bits = 0;
   int MAX = INT_MAX;
+  int one_mask = 0;
+  int end_shift = 0;
   while(MAX!=0){
     bits++;
     MAX = MAX<<1;
   }
+  printf("bits: %f\n", bits);
+  one_mask = (int)(pow(2.0,bits-1)-1);
+  printf("one_mask: %d\n", one_mask);
   printf("i1: %d\n", i1);
-  i1zeroedrightofstart = i1 & ((int)pow(2.0,bits)<<start);
+  i1zeroedrightofstart = i1 & (one_mask<<start);
   printf("i1zeroedrightofstart: %d\n", i1zeroedrightofstart);
   printf("i2: %d\n", i2);
-  i2lastnumbits = i2 & ~((int)pow(2.0,bits-1)<<numbits);
+  i2lastnumbits = i2 & ~(one_mask<<numbits);
   printf("i2lastnumbits: %d\n", i2lastnumbits);
-  i2lastnumbits <<= (int)bits-(start+numbits);
+  end_shift = (int)bits - (start+numbits);
+  printf("end_shift: %d\n",end_shift);
+  i2lastnumbits <<= end_shift;
   printf("i2lastnumbits: %d\n", i2lastnumbits);
-  rightmostbits = i1 & ~((int)pow(2.0, bits-1)<<((int)bits-(start+numbits)));
+  rightmostbits = i1 & ~(one_mask<<end_shift);
   printf("rightmostbits: %d\n", rightmostbits);
   i1 <<= 1;
   printf("i1: %d\n", i1);
