@@ -1,17 +1,44 @@
 #include <stdio.h>
-/* squeeze out all chars in s1 that match any char in s2  */
+#include <stdlib.h>
+/* for x invert n bits beginning p from right*/
 
-int invertbits(int i1, int start, int numbits);
+int invert_n_bits_at_p(int x, int n, int p);
+int build_selector(int p, int n);
 
-main() 
+int main(int argc, char** argv)
 {
-  printf("result: %d\n", invertbits(15,3,2));
+  if( argc != 4 ) {
+    printf("Usage: arg 1 = x, arg 2 = n, arg 3 = p: for x invert n bits beginning at p from right\n");
+    return -1;
+  }
+  printf("result: %d\n", invert_n_bits_at_p(atoi(argv[1]),atoi(argv[2]),atoi(argv[3])));
 }
 
-int invertbits(int i1, int start, int numbits) {
-  int i1fromstartrightnbinv, i1zeroedrightofstart, rightmostbits;
-  rightmostbits = i1 & ~(~0<<start-numbits);
-  i1zeroedrightofstart = i1 & (~0<<start);
-  i1fromstartrightnbinv =  ~((i1 >> start-numbits) | (~0<<numbits)) << start-numbits ;
-  return i1zeroedrightofstart | i1fromstartrightnbinv | rightmostbits;
+int invert_n_bits_at_p(int x, int p, int n) {
+  int selector = build_selector(p, n);
+  int x_inv = ~x;
+  int target_segment = x_inv & selector;
+  x = x & ~selector;
+  x = x | target_segment;
+  printf("result: %d\n", x);
+  //printf("selector: %d\n", selector);
+  return 0;
 }
+
+int build_selector(int p, int n){
+  int selector = 0;
+  int leader = p;
+  int size = n;
+  while (p>=0){
+    p--;
+    selector <<= 1;
+    if (n>0){
+      n--;
+      selector++;
+    }
+    printf("selector: %d\n", selector);
+  }
+  return selector;
+}
+
+
