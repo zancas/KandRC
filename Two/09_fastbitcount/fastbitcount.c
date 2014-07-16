@@ -3,7 +3,7 @@
 
 int fbitcount(unsigned i);
 int bitcount(unsigned x);
-main(int argc, char *argv[]) 
+int main(int argc, char** argv)
 {
   int BIGCOUNTER = 21474830;
   if (argv[1] == NULL){
@@ -23,7 +23,7 @@ main(int argc, char *argv[])
   }
   printf("bitcount of %d is %d.\n",2147483647, bitcount(2147483647));
   printf("fbitcount of %d is %d.\n",2147483647, fbitcount(2147483647));
-  /*printf("bitcount of %d is %d.\n",2147483647, bitcount(2147483647));  
+  /*printf("bitcount of %d is %d.\n",2147483647, bitcount(2147483647));
   printf("bitcount of %d is %d.\n",8, bitcount(8));
   printf("fbitcount of %d is %d.\n",8, fbitcount(8));
   printf("bitcount of %d is %d.\n",1, bitcount(1));
